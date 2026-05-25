@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Omita Bajpai | CS Undergraduate & Software Engineer</title>
+  <!-- Tailwind CSS CDN + basic interceptor styles -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Custom overrides for smooth transitions, readability, and focus -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Inter', 'Helvetica Neue', sans-serif;
+      background-color: #f8fafc;
+    }
+    /* Improved focus outline for accessibility */
+    *:focus-visible {
+      outline: 2px solid #1e293b;
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+    /* Mobile menu smooth toggle */
+    .mobile-nav {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out, opacity 0.2s ease, visibility 0s 0.2s;
+    }
+    .mobile-nav-open {
+      max-height: 360px;
+      opacity: 1;
+      visibility: visible;
+      transition: max-height 0.35s ease, opacity 0.25s ease, visibility 0s;
+    }
+    /* Subtle card hover */
+    .project-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+    }
+    /* Clean tag styles */
+    .skill-tag {
+      transition: all 0.1s ease;
+    }
+    /* form styling */
+    input, textarea {
+      transition: border 0.15s, box-shadow 0.15s;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+  <!-- ========== FIXED NAVIGATION BAR ========== -->
+  <header class="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 py-4 flex justify-between items-center">
+      <!-- Left: Name -->
+      <a href="#" class="text-xl md:text-2xl font-bold tracking-tight text-slate-900 hover:text-slate-700 transition">Omita Bajpai</a>
+      
+      <!-- Desktop navigation links -->
+      <nav class="hidden md:flex space-x-8 text-base font-medium">
+        <a href="#about" class="text-slate-700 hover:text-slate-900 transition">About</a>
+        <a href="#skills" class="text-slate-700 hover:text-slate-900 transition">Skills</a>
+        <a href="#projects" class="text-slate-700 hover:text-slate-900 transition">Projects</a>
+        <a href="#certifications" class="text-slate-700 hover:text-slate-900 transition">Certifications</a>
+        <a href="#contact" class="text-slate-700 hover:text-slate-900 transition">Contact</a>
+      </nav>
+      
+      <!-- Mobile burger button -->
+      <button id="menu-btn" class="block md:hidden text-slate-800 focus:outline-none" aria-label="Main menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu" class="md:hidden bg-white border-t border-slate-100 mobile-nav">
+      <div class="flex flex-col space-y-4 px-5 pt-3 pb-6 text-base font-medium">
+        <a href="#about" class="text-slate-800 hover:text-slate-900 py-1 transition">About</a>
+        <a href="#skills" class="text-slate-800 hover:text-slate-900 py-1 transition">Skills</a>
+        <a href="#projects" class="text-slate-800 hover:text-slate-900 py-1 transition">Projects</a>
+        <a href="#certifications" class="text-slate-800 hover:text-slate-900 py-1 transition">Certifications</a>
+        <a href="#contact" class="text-slate-800 hover:text-slate-900 py-1 transition">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-24 md:pt-28">
+    <!-- ========== HERO SECTION ========== -->
+    <section class="max-w-6xl mx-auto px-5 md:px-8 py-12 md:py-20">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-tight">Hi, I'm Omita Bajpai</h1>
+        <p class="text-xl md:text-2xl text-slate-800 font-medium mt-4">Computer Science Undergraduate & Software Engineer</p>
+        <p class="text-slate-600 text-lg mt-6 leading-relaxed max-w-2xl">A passionate, detail-oriented developer focused on writing clean, efficient code and building structured database systems. Dedicated to solving complex problems and engineering scalable solutions.</p>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <button id="viewProjectsBtn" class="bg-slate-800 hover:bg-slate-900 text-white font-medium px-6 py-3 rounded-lg shadow-sm transition duration-200 cursor-pointer">View Projects</button>
+          <button id="contactBtn" class="border-2 border-slate-800 text-slate-800 bg-transparent hover:bg-slate-100 font-medium px-6 py-3 rounded-lg transition duration-200 cursor-pointer">Contact Me</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT & EDUCATION SECTION (Two column) ========== -->
+    <section id="about" class="max-w-6xl mx-auto px-5 md:px-8 py-14 md:py-20 scroll-mt-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">About & Education</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Left card -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+          <p class="text-slate-700 leading-relaxed text-lg">Currently pursuing a <span class="font-semibold text-slate-900">Bachelor of Technology in Computer Science (B.Tech CS)</span> at <span class="font-semibold text-slate-900">Shree Ramswaroop Memorial University, Lucknow</span> (2023-2027).</p>
+          <div class="mt-5 inline-flex items-center space-x-2">
+            <span class="bg-slate-100 text-slate-800 text-sm font-medium px-3 py-1.5 rounded-full">Current GPA: 8/10</span>
+          </div>
+        </div>
+        <!-- Right card: additional academic insight -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+          <h3 class="text-xl font-semibold text-slate-800 mb-3">Academic Focus</h3>
+          <ul class="space-y-2 text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-slate-700 font-bold">•</span> <span>Data Structures, Algorithms & Software Engineering</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-700 font-bold">•</span> <span>Database Management & Scalable System Design</span></li>
+            <li class="flex items-start gap-2"><span class="text-slate-700 font-bold">•</span> <span>Full-stack prototyping & collaborative development</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SKILLS SECTION (minimal cards / tag layout) ========== -->
+    <section id="skills" class="bg-white border-y border-slate-100 py-14 md:py-20 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 tracking-tight">Skills & Technologies</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <!-- card 1: Languages -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+            <h3 class="text-lg font-semibold text-slate-800 border-l-4 border-slate-700 pl-3 mb-3">Languages</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Python</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">C</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">HTML</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">CSS</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">JavaScript</span>
+            </div>
+          </div>
+          <!-- card 2: Frameworks & Libraries -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+            <h3 class="text-lg font-semibold text-slate-800 border-l-4 border-slate-700 pl-3 mb-3">Frameworks & Libraries</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">React.js</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Pandas</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Matplotlib</span>
+            </div>
+          </div>
+          <!-- card 3: Tools & Databases -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+            <h3 class="text-lg font-semibold text-slate-800 border-l-4 border-slate-700 pl-3 mb-3">Tools & Databases</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Git/GitHub</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Visual Studio</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">MySQL</span>
+            </div>
+          </div>
+          <!-- card 4: Data Visualization -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+            <h3 class="text-lg font-semibold text-slate-800 border-l-4 border-slate-700 pl-3 mb-3">Data Visualization</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">IBM Cognos</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">PowerBI</span>
+            </div>
+          </div>
+          <!-- card 5: Core Concepts -->
+          <div class="bg-slate-50 rounded-xl p-5 border border-slate-200">
+            <h3 class="text-lg font-semibold text-slate-800 border-l-4 border-slate-700 pl-3 mb-3">Core Concepts</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Basics of Computer Networks (CN)</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">Agile Methodology</span>
+              <span class="skill-tag bg-white text-slate-700 text-sm px-3 py-1.5 rounded-full shadow-sm border border-slate-200">APIs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS SECTION (2 column grid) ========== -->
+    <section id="projects" class="max-w-6xl mx-auto px-5 md:px-8 py-14 md:py-20 scroll-mt-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-10 tracking-tight">Featured Projects</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Project 1: Legal Assistant Platform -->
+        <div class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-slate-800">Legal Assistant Platform (PleaNow)</h3>
+            <p class="text-slate-600 mt-3 leading-relaxed">Developed a web-based complaint management system designed to streamline the submission and resolution process for user grievances. Built a responsive, user-friendly interface to enhance transparency and integrated a Firebase backend for secure, real-time tracking and instant status updates.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">HTML</span>
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">CSS</span>
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">JavaScript</span>
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">Firebase</span>
+            </div>
+            <div class="mt-5">
+              <a href="https://github.com/omitabajpai16-cyber/PleaNow.git" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-slate-800 font-medium hover:text-slate-600 transition gap-1">View on GitHub <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2: Personal Portfolio Website -->
+        <div class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+          <div class="p-6">
+            <h3 class="text-xl font-bold text-slate-800">Personal Portfolio Website</h3>
+            <p class="text-slate-600 mt-3 leading-relaxed">Designed and implemented a fully responsive personal portfolio website built to showcase technical projects, core skills, certifications, and contact options using a clean UI layout and efficient frontend design.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">HTML</span>
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">CSS</span>
+              <span class="bg-slate-100 text-slate-700 text-xs font-mono px-2.5 py-1 rounded">JavaScript</span>
+            </div>
+            <div class="mt-5">
+              <a href="#" class="inline-flex items-center text-slate-800 font-medium hover:text-slate-600 transition gap-1">View on GitHub <span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS SECTION (clean grid/minimal cards) ========== -->
+    <section id="certifications" class="bg-white border-y border-slate-100 py-14 md:py-20 scroll-mt-20">
+      <div class="max-w-6xl mx-auto px-5 md:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-8 tracking-tight">Certifications</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="w-2 h-2 mt-2.5 rounded-full bg-slate-700"></div>
+            <span class="text-slate-800 font-medium">Google Cloud - Introduction to Generative AI</span>
+          </div>
+          <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="w-2 h-2 mt-2.5 rounded-full bg-slate-700"></div>
+            <span class="text-slate-800 font-medium">IBM - Data Visualization using Python</span>
+          </div>
+          <div class="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="w-2 h-2 mt-2.5 rounded-full bg-slate-700"></div>
+            <span class="text-slate-800 font-medium">TCS - TCS iON Career Edge - Young Professional</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT SECTION (form + external links / footer) ========== -->
+    <section id="contact" class="max-w-6xl mx-auto px-5 md:px-8 py-14 md:py-20 scroll-mt-20">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+
+        <!-- Contact & Social Links -->
+        <div class="bg-slate-50 rounded-2xl p-6 md:p-8 border border-slate-200">
+          <h3 class="text-xl font-semibold text-slate-800 mb-5">Connect directly</h3>
+          <div class="space-y-5">
+            <div class="flex items-center gap-3 text-slate-700">
+              <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <a href="mailto:omitabajpai16@gmail.com" class="hover:text-slate-900 break-all">omitabajpai16@gmail.com</a>
+            </div>
+            <div class="flex items-center gap-3 text-slate-700">
+              <svg class="w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+              <a href="#" class="hover:text-slate-900">LinkedIn: Omita Bajpai</a>
+            </div>
+            <div class="flex items-center gap-3 text-slate-700">
+              <svg class="w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              <a href="https://github.com/omitabajpai16-cyber" class="hover:text-slate-900">GitHub: My GitHub</a>
+            </div>
+          </div>
+          <div class="mt-8 pt-6 border-t border-slate-200 text-sm text-slate-500">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Vanilla JS: mobile menu toggle, smooth scroll, contact form simulation -->
+  <script>
+    (function() {
+      // ---------- Mobile menu toggle ----------
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.contains('mobile-nav-open');
+          if (isOpen) {
+            mobileMenu.classList.remove('mobile-nav-open');
+          } else {
+            mobileMenu.classList.add('mobile-nav-open');
+          }
+        });
+        // close mobile menu after clicking any link inside
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('mobile-nav-open');
+          });
+        });
+      }
+      
+      // ---------- Smooth scroll helpers for buttons + anchor links ----------
+      function smoothScrollToElement(selector, offset = 72) {
+        const target = document.querySelector(selector);
+        if (target) {
+          const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+        }
+      }
+      
+      // Buttons "View Projects" + "Contact Me"
+      const viewProjects = document.getElementById('viewProjectsBtn');
+      const contactBtnHero = document.getElementById('contactBtn');
+      if (viewProjects) viewProjects.addEventListener('click', () => smoothScrollToElement('#projects', 70));
+      if (contactBtnHero) contactBtnHero.addEventListener('click', () => smoothScrollToElement('#contact', 70));
+      
+      // All internal hash links (manual override for better offset)
+      const allHashLinks = document.querySelectorAll('a[href^="#"]');
+      allHashLinks.forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const hash = this.getAttribute('href');
+          if (hash && hash !== '#') {
+            const targetElem = document.querySelector(hash);
+            if (targetElem) {
+              e.preventDefault();
+              const offsetAmount = 72;
+              const pos = targetElem.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({ top: pos - offsetAmount, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+      
+      // ---------- Contact form simulation (user-friendly, non-refresh) ----------
+      const contactForm = document.getElementById('contactForm');
+      const feedbackMsg = document.getElementById('formFeedback');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const nameField = document.getElementById('name');
+          const emailField = document.getElementById('email');
+          const messageField = document.getElementById('message');
+          if (nameField.value.trim() && emailField.value.trim() && messageField.value.trim()) {
+            feedbackMsg.textContent = `Thanks ${nameField.value.trim()}! Your message has been sent. I'll get back soon.`;
+            feedbackMsg.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+              feedbackMsg.classList.add('hidden');
+            }, 4500);
+          } else {
+            alert('Please fill in all fields (Name, Email, Message) before sending.');
+          }
+        });
+      }
+      
+      // For responsive: if window resizes above md and mobile menu open, close gracefully
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768 && mobileMenu && mobileMenu.classList.contains('mobile-nav-open')) {
+          mobileMenu.classList.remove('mobile-nav-open');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
